@@ -49,6 +49,12 @@ function PickUpForm({ onClick }) {
     onClick();
   };
 
+  const isTimePast10AM = () => {
+    const currentDate = new Date();
+    const currentHour = currentDate.getHours();
+    return currentHour >= 10;
+  };
+
   console.log(pickupLocations);
 
   return (
@@ -152,6 +158,7 @@ function PickUpForm({ onClick }) {
             label="Booking Note"
             multiline
             rows={4}
+            required
           />
           <Button variant="contained" color="primary" type="submit">
             Proceed

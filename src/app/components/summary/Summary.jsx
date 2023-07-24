@@ -381,6 +381,14 @@ function Summary({ open, close }) {
                     )}
                   </Button>
                 )}
+                <Button
+                  variant="outlined"
+                  color="error"
+                  type="button"
+                  onClick={close}
+                >
+                  Back
+                </Button>
               </Stack>
             </Box>
           </Modal>

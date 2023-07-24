@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
       <body
         style={{
           background: "linear-gradient(180deg, #FAF4FF 0%, #E3F5FF 100%)",
-          minHeight: { xs: "90vh", md: "100vh" },
+          minHeight: { xs: "100vh", md: "100vh" },
           height: "100%",
         }}
       >

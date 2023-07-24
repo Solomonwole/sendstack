@@ -137,7 +137,7 @@ function DropForm({ onClick }) {
           </Button>
           <Button
             variant="outlined"
-            color="primary"
+            color="error"
             type="button"
             onClick={onClick}
           >

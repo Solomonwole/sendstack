@@ -20,7 +20,7 @@ export default function Home() {
         <Container maxWidth="lg">
           <Box
             sx={{
-              height: { xs: "90vh", md: "100vh" },
+              height: { xs: "80vh", md: "100vh" },
               width: "100%",
               display: "grid",
               gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" },
@@ -48,8 +48,8 @@ export default function Home() {
             <Image
               src="/hero.png"
               alt="Example Image"
-              width={isScreenSizeMd ? 552 : 400}
-              height={isScreenSizeMd ? 552 : 400}
+              width={isScreenSizeMd ? 552 : 300}
+              height={isScreenSizeMd ? 552 : 300}
             />
           </Box>
         </Container>

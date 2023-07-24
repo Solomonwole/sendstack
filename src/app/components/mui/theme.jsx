@@ -14,6 +14,9 @@ const theme = createTheme({
       main: "#210033",
       light: "#FFFFFF",
     },
+    error: {
+      main: "#f00",
+    },
   },
   breakpoints: {
     values: {
@@ -57,7 +60,7 @@ const theme = createTheme({
     },
     caption: {
       fontSize: "12px",
-      color: "#808080"
+      color: "#808080",
     },
   },
   components: {

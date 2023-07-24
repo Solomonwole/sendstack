@@ -18,83 +18,123 @@ import theme from "./mui/theme";
 function NavBar() {
   return (
     <>
-      <Box sx={{ flexGrow: 1 }}>
+      <Box display={{ xs: "none", md: "flex" }} sx={{ flexGrow: 1 }}>
         <AppBar
           position="static"
-          sx={{ background: "transparent" }}
+          sx={{ background: "transparent", padding: "0" }}
           elevation={0}
         >
           <Toolbar>
             <Container maxWidth="lg">
-              <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                }}
-              >
-                <Link href="/">
-                  <Image
-                    src="/logo.svg"
-                    alt="Example Image"
-                    width={160}
-                    height={40}
-                  />
-                </Link>
-                <Stack
-                  direction="row"
-                  component="ul"
+              <Box width="100%">
+                <Box
                   sx={{
-                    display: { xs: "none", md: "flex" },
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
                   }}
-                  spacing={2}
                 >
-                  <li>
-                    <Link href="/request">
-                      <Typography
-                        variant="body1"
-                        component="div"
-                        sx={{
-                          flexGrow: 1,
-                          color: theme.palette.textPrimary.main,
-                        }}
-                      >
-                        Send a package
-                      </Typography>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/request">
-                      <Typography
-                        variant="body1"
-                        component="div"
-                        sx={{
-                          flexGrow: 1,
-                          color: theme.palette.textPrimary.main,
-                        }}
-                      >
-                        Generate Price Estimate
-                      </Typography>
-                    </Link>
-                  </li>
-                </Stack>
+                  <Link href="/">
+                    <Image
+                      src="/logo.svg"
+                      alt="Example Image"
+                      width={160}
+                      height={40}
+                    />
+                  </Link>
+                  <Stack
+                    direction="row"
+                    component="ul"
+                    sx={{
+                      display: { xs: "none", md: "flex" },
+                    }}
+                    spacing={2}
+                  >
+                    <li>
+                      <Link href="/request">
+                        <Typography
+                          variant="body1"
+                          component="div"
+                          sx={{
+                            flexGrow: 1,
+                            color: theme.palette.textPrimary.main,
+                          }}
+                        >
+                          Send a package
+                        </Typography>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/request">
+                        <Typography
+                          variant="body1"
+                          component="div"
+                          sx={{
+                            flexGrow: 1,
+                            color: theme.palette.textPrimary.main,
+                          }}
+                        >
+                          Generate Price Estimate
+                        </Typography>
+                      </Link>
+                    </li>
+                  </Stack>
 
-                <Stack
-                  direction="row"
-                  spacing={2}
-                  sx={{ display: { xs: "none", md: "flex" } }}
+                  <Stack
+                    direction="row"
+                    spacing={2}
+                    sx={{ display: { xs: "none", md: "flex" } }}
+                  >
+                    <Button variant="text" color="primary">
+                      Sign In
+                    </Button>
+                    <Button variant="contained" color="primary">
+                      Create An Account
+                    </Button>
+                  </Stack>
+
+                  <IconButton sx={{ display: { xs: "flex", md: "none" } }}>
+                    <AiOutlineMenu color="#210033" size={25} />
+                  </IconButton>
+                </Box>
+              </Box>
+            </Container>
+          </Toolbar>
+        </AppBar>
+      </Box>
+
+      {/* Mobile */}
+
+      <Box display={{ md: "none" }} sx={{ flexGrow: 1 }}>
+        <AppBar
+          position="static"
+          sx={{ background: "transparent", padding: "0" }}
+          elevation={0}
+        >
+          <Toolbar>
+            <Container maxWidth="xs">
+              <Box width="100%">
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    margin: "0 -18px",
+                  }}
                 >
-                  <Button variant="text" color="primary">
-                    Sign In
-                  </Button>
-                  <Button variant="contained" color="primary">
-                    Create An Account
-                  </Button>
-                </Stack>
+                  <Link href="/">
+                    <Image
+                      src="/logo.svg"
+                      alt="Example Image"
+                      width={160}
+                      height={40}
+                    />
+                  </Link>
 
-                <IconButton sx={{ display: { xs: "flex", md: "none" } }}>
-                  <AiOutlineMenu color="#210033" size={25} />
-                </IconButton>
+                  <IconButton sx={{ display: { xs: "flex", md: "none" } }}>
+                    <AiOutlineMenu color="#210033" size={25} />
+                  </IconButton>
+                </Box>
               </Box>
             </Container>
           </Toolbar>
