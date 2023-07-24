@@ -156,14 +156,12 @@ function PickUpForm({ onClick }) {
           </Stack>
 
           <FormControl fullWidth>
-            <InputLabel id="item">Item Category</InputLabel>
+            <InputLabel>Item Category</InputLabel>
             <Select
-              labelId="item"
-              id="item"
               name="itemCategory"
               value={pickUpData.itemCategory}
               label="Drop Off Location"
-              onChange={handleInputStateChange}
+              onChange={handleInputChange}
               required
             >
               {itemCat.map((item, index) => (
@@ -179,10 +177,10 @@ function PickUpForm({ onClick }) {
             <Select
               labelId="item"
               id="item"
-              name="itemCategory"
-              value={pickUpData.itemCategory}
+              name="itemSize"
+              value={pickUpData.itemSize}
               label="Drop Off Location"
-              onChange={handleInputStateChange}
+              onChange={handleInputChange}
               required
             >
               {size.map((item, index) => (

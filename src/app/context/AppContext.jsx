@@ -18,6 +18,8 @@ export const AppProvider = ({ children }) => {
     locationCode: "",
     pickupDate: "",
     note: "",
+    itemSize: "",
+    itemCategory: "",
   });
   const [dropOffData, setDropOffData] = useState({
     locationCode: "",
