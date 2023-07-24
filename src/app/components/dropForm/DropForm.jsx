@@ -1,6 +1,7 @@
 "use client";
 import { AppContext } from "@/app/context/AppContext";
 import {
+  Autocomplete,
   Box,
   Button,
   FormControl,
@@ -44,6 +45,20 @@ function DropForm({ onClick }) {
 
     if (selectedState) {
       setDropOffLocations(selectedState.locals);
+    }
+  };
+
+  const handleAutocompleteChange = (event, newValue) => {
+    if (newValue) {
+      setDropOffData((prevState) => ({
+        ...prevState,
+        locationCode: newValue.locationCode,
+      }));
+    } else {
+      setDropOffData((prevState) => ({
+        ...prevState,
+        locationCode: "",
+      }));
     }
   };
 
@@ -99,30 +114,19 @@ function DropForm({ onClick }) {
             </Select>
           </FormControl>
 
-          <FormControl fullWidth>
-            <InputLabel id="area">Location</InputLabel>
-            <Select
-              labelId="area"
-              id="area"
-              name="locationCode"
-              value={dropOffData.locationCode}
-              label="Location"
-              onChange={(event) => {
-                const { name, value } = event.target;
-                setDropOffData((prevState) => ({
-                  ...prevState,
-                  [name]: value,
-                }));
-              }}
-              required
-            >
-              {dropOffLocations.map((location, index) => (
-                <MenuItem key={index} value={location.locationCode}>
-                  {location.name}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
+          <Autocomplete
+            disablePortal
+            options={dropOffLocations}
+            value={
+              dropOffLocations.find(
+                (option) => option.locationCode === dropOffData.locationCode
+              ) || null
+            }
+            onChange={handleAutocompleteChange}
+            getOptionLabel={(option) => option.name}
+            renderInput={(params) => <TextField {...params} label="Area" />}
+          />
+
           <TextField
             type="text"
             name="address"

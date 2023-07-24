@@ -9,8 +9,11 @@ import {
   Stack,
   TextField,
   Button,
+  Typography,
+  Autocomplete,
 } from "@mui/material";
 import React, { useContext } from "react";
+import { BiSolidError } from "react-icons/bi";
 
 function PickUpForm({ onClick }) {
   const {
@@ -49,10 +52,18 @@ function PickUpForm({ onClick }) {
     onClick();
   };
 
-  const isTimePast10AM = () => {
-    const currentDate = new Date();
-    const currentHour = currentDate.getHours();
-    return currentHour >= 10;
+  const handleAutocompleteChange = (event, newValue) => {
+    if (newValue) {
+      setPickUpData((prevState) => ({
+        ...prevState,
+        locationCode: newValue.locationCode,
+      }));
+    } else {
+      setPickUpData((prevState) => ({
+        ...prevState,
+        locationCode: "",
+      }));
+    }
   };
 
   console.log(pickupLocations);
@@ -105,30 +116,18 @@ function PickUpForm({ onClick }) {
             </Select>
           </FormControl>
 
-          <FormControl fullWidth>
-            <InputLabel id="area">Location</InputLabel>
-            <Select
-              labelId="area"
-              id="area"
-              name="locationCode"
-              value={pickUpData.locationCode}
-              label="Location"
-              onChange={(event) => {
-                const { name, value } = event.target;
-                setPickUpData((prevState) => ({
-                  ...prevState,
-                  [name]: value,
-                }));
-              }}
-              required
-            >
-              {pickupLocations.map((area, index) => (
-                <MenuItem key={index} value={area.locationCode}>
-                  {area.name}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
+          <Autocomplete
+            disablePortal
+            options={pickupLocations}
+            value={
+              pickupLocations.find(
+                (option) => option.locationCode === pickUpData.locationCode
+              ) || null
+            }
+            onChange={handleAutocompleteChange}
+            getOptionLabel={(option) => option.name}
+            renderInput={(params) => <TextField {...params} label="Area" />}
+          />
           <TextField
             type="text"
             name="address"
@@ -149,6 +148,51 @@ function PickUpForm({ onClick }) {
               min: new Date().toISOString().split("T")[0],
             }}
           />
+          <Stack direction="row" alignItems="center">
+            <BiSolidError color="#f00" size={18} />
+            <Typography variant="caption" sx={{ color: "#808080" }}>
+              Same day delivery should be placed before 10am
+            </Typography>
+          </Stack>
+
+          <FormControl fullWidth>
+            <InputLabel id="item">Item Category</InputLabel>
+            <Select
+              labelId="item"
+              id="item"
+              name="itemCategory"
+              value={pickUpData.itemCategory}
+              label="Drop Off Location"
+              onChange={handleInputStateChange}
+              required
+            >
+              {itemCat.map((item, index) => (
+                <MenuItem key={index} value={item.value}>
+                  {item.label}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+
+          <FormControl fullWidth>
+            <InputLabel id="item">How big is this item?</InputLabel>
+            <Select
+              labelId="item"
+              id="item"
+              name="itemCategory"
+              value={pickUpData.itemCategory}
+              label="Drop Off Location"
+              onChange={handleInputStateChange}
+              required
+            >
+              {size.map((item, index) => (
+                <MenuItem key={index} value={item.value}>
+                  {item.label}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+
           <TextField
             type="text"
             name="note"
@@ -160,6 +204,7 @@ function PickUpForm({ onClick }) {
             rows={4}
             required
           />
+
           <Button variant="contained" color="primary" type="submit">
             Proceed
           </Button>
@@ -170,3 +215,23 @@ function PickUpForm({ onClick }) {
 }
 
 export default PickUpForm;
+
+const itemCat = [
+  { label: "Clothes", value: "clothes" },
+  { label: "Shoes", value: "clothes" },
+  { label: "Jewelry / Accessories", value: "jewelry" },
+  { label: "Cosmetics", value: "cosmetics" },
+  { label: "Gadgets", value: "gadgets" },
+  { label: "Medicine / Drugs", value: "drugs" },
+  { label: "Household Utensils", value: "utensils" },
+  { label: "Water / Liquid", value: "water" },
+  { label: "Alcoholic drinks", value: "alcoholic" },
+  { label: "Non-alcoholic drinks", value: "drinks" },
+  { label: "Processed / Cooked food", value: "food" },
+  { label: "Groceries", value: "groceries" },
+];
+
+const size = [
+  { label: "Smaller than a carton of indomie", value: "small" },
+  { label: "Larger than a carton of indomie", value: "large" },
+];

@@ -12,6 +12,7 @@ import {
   Select,
   Typography,
   IconButton,
+  Autocomplete,
 } from "@mui/material";
 import theme from "../mui/theme";
 import { AppContext } from "@/app/context/AppContext";
@@ -53,6 +54,20 @@ function AddAddress({ close }) {
     e.preventDefault();
     setDropOffDataArray((prevData) => [...prevData, newAddress]);
     close();
+  };
+
+  const handleAutocompleteChange = (event, newValue) => {
+    if (newValue) {
+      setNewAddress((prevState) => ({
+        ...prevState,
+        locationCode: newValue.locationCode,
+      }));
+    } else {
+      setNewAddress((prevState) => ({
+        ...prevState,
+        locationCode: "",
+      }));
+    }
   };
 
   return (
@@ -115,24 +130,25 @@ function AddAddress({ close }) {
                       ))}
                     </Select>
                   </FormControl>
-                  <FormControl fullWidth>
-                    <InputLabel id="area">Location</InputLabel>
-                    <Select
-                      labelId="area"
-                      id="area"
-                      name="locationCode"
-                      value={newAddress.locationCode}
-                      label="Location"
-                      onChange={handleInputChange}
-                      required
-                    >
-                      {areaArray.map((area, index) => (
-                        <MenuItem key={index} value={area.locationCode}>
-                          {area.name}
-                        </MenuItem>
-                      ))}
-                    </Select>
-                  </FormControl>
+
+                 
+
+                  <Autocomplete
+                    disablePortal
+                    options={areaArray}
+                    value={
+                      areaArray.find(
+                        (option) =>
+                          option.locationCode === newAddress.locationCode
+                      ) || null
+                    }
+                    onChange={handleAutocompleteChange}
+                    getOptionLabel={(option) => option.name}
+                    renderInput={(params) => (
+                      <TextField {...params} label="Area" />
+                    )}
+                  />
+
                   <TextField
                     type="text"
                     name="address"
