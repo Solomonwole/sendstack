@@ -34,14 +34,14 @@ export default function Home() {
                   The Smarter Way to Deliver & Grow
                 </Typography>
                 <Typography variant="body1" color="textPrimary">
-                  Sendstack helps businesses grow with ease by providing the
+                  SendStack helps businesses grow with ease by providing the
                   most reliable, affordable and efficient delivery service.
                 </Typography>
               </Stack>
 
               <Link href="/request">
                 <Button variant="contained" sx={{ width: "135px" }}>
-                  Get Started
+                  Book an Order
                 </Button>
               </Link>
             </Stack>

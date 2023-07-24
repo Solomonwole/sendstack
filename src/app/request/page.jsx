@@ -58,7 +58,7 @@ function Page() {
           <Box sx={{ width: "100%", maxWidth: "500px" }}>
             <Stack spacing={3}>
               <Typography variant="h2" color="textPrimary" align="center">
-                Send Packages
+                Book An Order
               </Typography>
 
               <Typography variant="body1" color="textPrimary" align="center">
